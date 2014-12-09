@@ -1,0 +1,49 @@
+v0.2.1
+2011/04/06
+
+	- Fixed build failure due to missing config.h #include file.
+
+
+v0.2.0
+2011/03/15
+
+	- Support, require, and check for libecap v0.2.
+
+	- Supply detected virus ID to the host application via the eCAP
+	  X-Virus-ID meta-header. The host may log the supplied virus ID with
+	  other transaction details or perform other host-specific
+	  notification actions.
+
+	- Made unknown service options a fatal configuration error as opposed
+	  to just a warning.
+
+	- Added debug=full|none ClamAV service option to enable debugging.
+	  This feature is based on undocumented cl_debug() ClamAV API and
+	  suffers from that API limitations: If enabled for one service, all
+	  services will be debugged, and debugging can no longer be turned
+	  off. More work is needed (using unstable ClamAV debugging callback
+	  interfaces) to make debugging usable beyond lab tests.
+
+
+v0.1.1
+2011/01/09
+
+	- Fixed stuck transactions, typically visible with large bodies.
+
+	- Use GPL v2, the minimally restrictive license allowed by libclamav.
+
+	- Updated documentation.
+
+
+v0.1.0
+2010/12/17
+
+	- First external release, after a major rewrite.
+	  Requires libecap v0.1.
+
+
+v0.0.2
+2008/09/30
+
+	- First internal release.
+	  Requires libecap v0.0.3.

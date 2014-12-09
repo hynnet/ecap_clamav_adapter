@@ -1,0 +1,38 @@
+This eCAP adapter module checks HTTP request and response bodies using the
+ClamAV antivirus library and denies access to messages with detected viruses.
+
+Configuration via host application (e.g., squid.conf in Squid v3.2 or later):
+
+    on_error=ACTION  What to do with the message being scanned if scan fails.
+                     Valid actions are block and allow. Default is allow.
+
+    staging_dir=PATTERN  Where to put files for libclamav analysis. Libclamav
+                         API requires us to store complete message bodies into
+                         files before the analysis can start.
+                         The specified pattern can be a directory name ending
+                         with a slash or a filename prefix. If the pattern
+                         does not end with an "X", The adapter appends
+                         "XXXXXX" to allow for random file names.  It may be a
+                         good idea to use a RAM-based filesystem for the
+                         staging directory to speedup I/O. The default is
+                         /tmp/eclamavXXXXXX.
+
+    huge_size=SIZE  Message bodies of at least this size are allowed without
+                    analysis. They are still accumulated if the body size is
+                    unknown at the transaction start. Keep in mind that
+                    libclamav has various hidden size limits of its own but
+                    there is no documented API to change those.
+                    If set to "none", no limit is imposed. Other valid values
+                    are unsigned positive integers representing the number of
+                    bytes in the smallest huge message. The default is "none".
+
+
+Messages with a test virus signature:
+    http://www.eicar.org/download/eicar.com
+    http://www.eicar.org/download/eicar.com.txt
+    http://www.eicar.org/download/eicar_com.zip
+    http://www.eicar.org/download/eicarcom2.zip
+
+
+Help, including commercial support and development, is available from
+The Measurement Factory (http://www.measurement-factory.com/).

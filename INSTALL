@@ -1,0 +1,15 @@
+Installation Instructions
+
+The libecap and libclamav libraries are required to build and use this adapter.
+
+General ClamAV installation instructions on ClamAV Wiki:
+    https://wiki.clamav.net/Main/FirstInstallation
+
+The libecap library download and support:
+    http://www.e-cap.org/
+
+To build and install this eCAP ClamAV adapter from source:
+    % ./configure
+    % make
+    % make install
+
